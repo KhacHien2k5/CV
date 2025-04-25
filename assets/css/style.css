@@ -10,6 +10,11 @@ background: #0b0b40;
 background: linear-gradient(180deg, rgba(11, 11, 64, 1) 0%, rgba(9, 9, 121, 1) 86%, rgba(5, 119, 250, 1) 100%);
 min-height: 100vh;
 color: rgb(244, 246, 247);
+font-family: 'Inter', 'Helveca Neue', sans-serif;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 .container{
     max-width: 1200px;
@@ -22,14 +27,52 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
 }
 .logo {
     font-size: 40px;
     font-weight: 600;
     background: #007ef5;
-background: linear-gradient(90deg, rgba(0, 126, 245, 1) 0%, rgba(0, 212, 255, 1) 100%);
+    background: linear-gradient(90deg, rgba(0, 126, 245, 1) 0%, rgba(0, 212, 255, 1) 100%);
     background-clip: text;
     color: transparent;
+}
+.nav-menu{
+list-style: none;
+padding: 0;
+margin: 0;
+}
+.nav-menu li {
+    display: inline-block;
+    position: relative;
+}
+.nav-menu {
+    text-decoration: none;
+    color:white;
+    position: relative;
+    transition: color 0.3s ease;
+}
+.nav-menu :hover{
+    color: #007ef5;
+}
+.nav-menu :hover::after{
+    transform: scaleX(1);
+    transform-origin: left;
+}
+ .nav-menu li ::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: rgb(29, 153, 249);
+    transition: width 0.75s;
+}
+.nav-menu li :hover::after{
+    width: 100%;
+
 }
 nav ul{
     display: flex;
@@ -71,9 +114,33 @@ main{
 .content h1 span{
     font-weight: 600;
     background: #007ef5;
-background: linear-gradient(90deg, rgba(0, 126, 245, 1) 0%, rgba(0, 212, 255, 1) 100%);
+    background: linear-gradient(90deg, rgba(0, 126, 245, 1) 0%, rgba(0, 212, 255, 1) 100%);
     background-clip: text;
     color: transparent;
+}
+.reveal-text{
+  animation: slide-in 1s ease-out forwards;  
+}
+.reveal-text span{
+    transform: translateX(-50);
+    display: inline-block;
+    animation: reveal-span 1.5s ease-out 1s forwards;
+}
+@keyframes slide-in {
+    0%{
+        transform: translateX(-100);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}   
+@keyframes reveal-span{
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 .content p:nth-of-type(1){
     color: rgb(200, 182, 226);
@@ -130,6 +197,12 @@ box-shadow: rgba(152, 148, 239, 0.35) 0px 5px 15px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+.feature:hover .icon{
+    transform: rotate(360deg) scale(2.5);
+    transition: transform 0.6s ease;
 }
 .feature.wide{
     flex: 1 1 100%;
@@ -137,16 +210,20 @@ box-shadow: rgba(152, 148, 239, 0.35) 0px 5px 15px;
 .icon-circle {
     width: 60px;
     height: 60px;
-    background-color: #1e2a7c; /* Màu nền xanh đậm */
+    background: #007ef5;
+    background: linear-gradient(90deg, rgba(0, 126, 245, 1) 0%, rgba(0, 212, 255, 1) 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
+    box-shadow: 0 0 10px ;
   }
-  
+  .icon {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
   .icon-circle i {
-    color: #74C0FC; /* Màu xanh nhạt của icon */
     font-size: 24px;
   }
   .feature p:nth-of-type(1){
@@ -190,11 +267,9 @@ box-shadow: rgba(152, 148, 239, 0.35) 0px 5px 15px;
         transform: translateZ(0) ;
     }
 }
-.aos-init:{
-
-}
-.aos-animate{
-
+.aos-init:hover{
+    transform: translateY(-4px);
+    box-shadow: rgba(152, 148, 239, 0.35) 0px 5px 15px;
 }
 .social-icon{
     display: flex;
